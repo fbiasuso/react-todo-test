@@ -1,17 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
+
 import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 import { List, Title } from "../ui";
 
 export const MainContainer = () =>{
 
-    const handleSubmit = (e)=>{
-        e.preventDefault()
+    const [task, setTask] = useState("");
+    const [tasksList, setTasksList] = useState({
+        id: "",
+        task: ""
+    });
 
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        const id = crypto.randomUUID();
+        setTasksList({...tasksList, id:id, task:task})
+        e.target.reset();
+        setTask("");
     }
 
     const handleChange = (e)=>{
         e.preventDefault()
+        setTask(e.target.value)
 
     }
 
