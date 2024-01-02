@@ -1,19 +1,15 @@
-import React from "react";
-
-export const List = ({items,className = ""}) =>{
-const colors = {
-    blue: "primary",
-    red: "danger",
-    gray: "secondary",
-    green: "success",
-    dark: "dark",
-    white: "light"
-};
+import React, {useState} from "react";
 
 
+export const List = ({items,className = "", setTasksList=null}) =>{
 
 const style= `list-group list-group-flush bg-dark ${className}`
 
+const handleDelete = (id)=>{
+const neWitems = items.filter((object)=> object.id !==  id) 
+setTasksList([...neWitems])
+}
+let deleteId;
     return (
             <ul className={style}>
               { items ? items.map((item)=>
@@ -23,7 +19,7 @@ const style= `list-group list-group-flush bg-dark ${className}`
                         <label className="form-check-label stretched-link" htmlFor={item.id}>{item.task}</label>
                         
                     </li>
-                    <button type="button" className="btn btn-outline-danger btn-sm ms-4"> Eliminar </button>
+                    <button type="button" className="btn btn-outline-danger btn-sm ms-4" onClick={()=> handleDelete(item.id)}> Eliminar </button>
                     </div>
                     
                     ) : <p className="text-center mt-3">No hay tareas.</p>}

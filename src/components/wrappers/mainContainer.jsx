@@ -11,12 +11,18 @@ export const MainContainer = () =>{
     const [isError,setIsError] = useState(false)
     const [msg, setMsg] = useState("...")
     const [isShow,setIsShow] = useState(false)
+    const [timeoutId,setTimeoutId] = useState("")
 
     const textColor = isError ? "text-danger " : "text-success ";
     
     const handleSubmit = (e)=>{
         e.preventDefault();
+        timeoutId && clearTimeout(timeoutId)
         
+        setTimeoutId(setTimeout(() => {
+            setIsShow(false);
+          }, 5000));
+
         if(!task){
             setIsError(true);
             setIsShow(true);
@@ -39,6 +45,7 @@ export const MainContainer = () =>{
         setTasksList([...tasksList, {id:id, task:task}])
         e.target.reset();
         setTask("");
+        
     }
 
     const handleChange = (e)=>{
@@ -59,7 +66,7 @@ export const MainContainer = () =>{
                 </div>
                 <div>
                     <Title name="Lista de Tareas" type="h2" className="mb-3 mt-4" />
-                    <List items={tasksList}/>
+                    <List items={tasksList} setTasksList={setTasksList}/>
                 </div>
             </main>
     )
