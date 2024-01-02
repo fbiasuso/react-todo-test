@@ -32,3 +32,7 @@ body{
 .small {
   font-size: 0.75rem;
 }
+
+.transition{
+   transition: 0.60s ease-in;
+}

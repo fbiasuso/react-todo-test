@@ -8,9 +8,33 @@ export const MainContainer = () =>{
 
     const [task, setTask] = useState("");
     const [tasksList, setTasksList] = useState("");
+    const [isError,setIsError] = useState(false)
+    const [msg, setMsg] = useState("...")
+    const [isShow,setIsShow] = useState(false)
 
+    const textColor = isError ? "text-danger " : "text-success ";
+    
     const handleSubmit = (e)=>{
         e.preventDefault();
+        
+        if(!task){
+            setIsError(true);
+            setIsShow(true);
+            setMsg("Error: Debes escribir una tarea para agregarla.");
+            return
+        }
+        
+        if(tasksList &&  tasksList.find((object)=> object.task === task)){
+            setIsError(true);
+            setIsShow(true);
+            setMsg("Error: Ya existe una tarea igual.");
+            return
+        }
+
+        setIsError(false);
+        setIsShow(true);
+        setMsg("Éxito: La tarea se agregó correctamente.");
+
         const id = crypto.randomUUID();
         setTasksList([...tasksList, {id:id, task:task}])
         e.target.reset();
@@ -28,7 +52,8 @@ export const MainContainer = () =>{
                 <Title name="TAREAS" type="h1" className="mb-5"/>
                 <div className="w-50 mb-5">
                      <Form onSubmit={(e)=> handleSubmit(e)}>
-                        <input className="form-control mb-4" type="text" name="task" placeholder="Nueva Tarea..." onChange={(e)=> handleChange(e)}/>
+                        <p id="msg" className={"text-center transition "+ (isShow ? "opacity-100 "+textColor : "opacity-0 "+textColor)}>{msg}</p>
+                        <input className="form-control mb-4" type="text" id="task" name="task" placeholder="Nueva Tarea..." onChange={(e)=> handleChange(e)}/>
                        <Button name="Agregar" color="blue" className="w-50 mx-auto"/>
                      </Form>
                 </div>
