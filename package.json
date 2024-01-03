@@ -20,7 +20,7 @@
   "scripts": {
     "start": "BROWSER=none WDS_SOCKET_PORT=0 vite --port 3000",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest"
