@@ -8,6 +8,7 @@ export const MainContainer = () =>{
     const [isError,setIsError] = useState(false)
     const [msg, setMsg] = useState("...")
     const [isShow,setIsShow] = useState(false)
+    const [opacity, setOpacity] = useState("opacity-0")
     const textColor = isError ? "text-danger " : "text-success ";
    
     return (
@@ -27,6 +28,7 @@ export const MainContainer = () =>{
                         textColor={textColor}
                         setTasksList={setTasksList}
                         tasksList={tasksList} 
+                        setOpacity={setOpacity}
                     />
                 </div>
                 <div>
@@ -38,6 +40,8 @@ export const MainContainer = () =>{
                     <List 
                         items={tasksList}
                         setTasksList={setTasksList}
+                        opacity={opacity}
+                        setOpacity={setOpacity}
                     />
                 </div>
             </main>
