@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Message } from "../ui/";
 
-export const Form = ({ msg, setMsg, isShow, setIsShow, setIsError, textColor, setTasksList, tasksList, setOpacity,className = "", }) => {
+export const Form = ({ msg, setMsg, isShow, setIsShow, setIsError, textColor, setTasksList, tasksList, className = "", }) => {
   const [task, setTask] = useState("");
   const [timeoutId, setTimeoutId] = useState("")
 
@@ -37,18 +37,18 @@ export const Form = ({ msg, setMsg, isShow, setIsShow, setIsError, textColor, se
     setMsg("Éxito: La tarea se agregó correctamente.");
 
     const id = crypto.randomUUID();
-    setTasksList([...tasksList, { id: id, task: task, checked:false, opacity: "opacity-0"}])
+    setTasksList([...tasksList, {id:id,task:task,checked:false}])
     e.target.reset();
     setTask("");
   }
 
-  const handleOpacity= ()=>{
+ /*  const handleOpacity= ()=>{
     setTimeout(() => {
        
       setOpacity("opacity-100")
             
           }, 1000)
-  }
+  } */
 
   const style = `d-flex flex-column justify-content-center w-75 mx-auto ${className}`
 
@@ -56,7 +56,7 @@ export const Form = ({ msg, setMsg, isShow, setIsShow, setIsError, textColor, se
     <form className={style} onSubmit={(e) => handleSubmit(e)}>
       <Message msg={msg} isShow={isShow} textColor={textColor}></Message>
       <input className="form-control mb-4" type="text" id="task" name="task" placeholder="Nueva Tarea..." onChange={(e) => handleChange(e)} />
-      <Button name="Agregar" type="submit" variant="normal" color="blue" className="w-50 mx-auto" onClick={() => handleOpacity()}/>
+      <Button name="Agregar" type="submit" variant="normal" color="blue" className="w-50 mx-auto" onClick={null}/>
     </form>
   );
 }

@@ -1,15 +1,18 @@
-import React, {useState} from "react";
+import React from "react";
 import { Title } from "../ui";
 import { Form, List } from "./";
 
 export const MainContainer = () =>{
-
-    const [tasksList, setTasksList] = useState("");
-    const [isError,setIsError] = useState(false)
-    const [msg, setMsg] = useState("...")
-    const [isShow,setIsShow] = useState(false)
-    const [opacity, setOpacity] = useState("opacity-0")
+    const storage = JSON.parse(localStorage.getItem("tasksList"));
+    const [tasksList, setTasksList] = React.useState(storage?storage:[]);
+    const [isError,setIsError] = React.useState(false)
+    const [msg, setMsg] = React.useState("...")
+    const [isShow,setIsShow] = React.useState(false)
     const textColor = isError ? "text-danger " : "text-success ";
+
+    React.useEffect(()=>{
+        localStorage.setItem("tasksList", JSON.stringify(tasksList));
+    },[tasksList])
    
     return (
             <main id="main" className="bg-dark vh-100 text-light d-flex flex-column align-items-center pt-5 overflow-auto">
@@ -28,7 +31,6 @@ export const MainContainer = () =>{
                         textColor={textColor}
                         setTasksList={setTasksList}
                         tasksList={tasksList} 
-                        setOpacity={setOpacity}
                     />
                 </div>
                 <div>
@@ -40,8 +42,6 @@ export const MainContainer = () =>{
                     <List 
                         items={tasksList}
                         setTasksList={setTasksList}
-                        opacity={opacity}
-                        setOpacity={setOpacity}
                     />
                 </div>
             </main>

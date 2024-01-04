@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { ListItem } from "../ui/listItem";
 
-export const List = ({ items,setTasksList,opacity,setOpacity,className = "" }) => {
+export const List = ({ items,setTasksList,className = "" }) => {
        
 
     const style = `list-group list-group-flush bg-dark ${className}`
@@ -21,7 +21,7 @@ export const List = ({ items,setTasksList,opacity,setOpacity,className = "" }) =
         <ul className={style}>
             {items.length !== 0 ? items.map((item,index,array) =>{
                 const keylord = crypto.randomUUID();
-              return  <div key={keylord} id={"div-"+item.id} className={"d-flex flex-row justify-content-between mb-2 transition "+ (index === array.length -1 ? opacity : "opacity-100")}  /* onLoad={handleOpacity(keylord)} */>
+              return  <div key={keylord} id={"div-"+item.id} className="d-flex flex-row justify-content-between mb-2 transition ">
                         <ListItem item={item} handleCheckbox={handleCheckbox} />
                         <Button name="Eliminar" variant="outline" color="red" onClick={() => handleDelete(item.id)} className="btn-sm ms-4" />
                       </div>}
