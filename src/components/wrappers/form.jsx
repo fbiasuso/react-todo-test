@@ -20,7 +20,7 @@ export const Form = ({setTasksList, tasksList, className = "", }) => {
 
     setTimeoutId(setTimeout(() => {
       setIsShow(false);
-    }, 3000));
+    }, 2000));
 
     if (!task) {
       setIsError(true);
