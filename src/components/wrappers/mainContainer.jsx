@@ -5,10 +5,6 @@ import { Form, List } from "./";
 export const MainContainer = () =>{
     const storage = JSON.parse(localStorage.getItem("tasksList"));
     const [tasksList, setTasksList] = React.useState(storage?storage:[]);
-    const [isError,setIsError] = React.useState(false)
-    const [msg, setMsg] = React.useState("...")
-    const [isShow,setIsShow] = React.useState(false)
-    const textColor = isError ? "text-danger " : "text-success ";
 
     React.useEffect(()=>{
         localStorage.setItem("tasksList", JSON.stringify(tasksList));
@@ -23,12 +19,6 @@ export const MainContainer = () =>{
                 />
                 <div className="w-50 mb-5">
                      <Form  
-                        msg={msg}
-                        setMsg={setMsg}
-                        isShow={isShow}
-                        setIsError={setIsError}
-                        setIsShow={setIsShow}
-                        textColor={textColor}
                         setTasksList={setTasksList}
                         tasksList={tasksList} 
                     />

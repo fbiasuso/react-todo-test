@@ -1,9 +1,13 @@
 import React from "react";
 import { Button, Message } from "../ui/";
 
-export const Form = ({ msg, setMsg, isShow, setIsShow, setIsError, textColor, setTasksList, tasksList, className = "", }) => {
+export const Form = ({setTasksList, tasksList, className = "", }) => {
   const [task, setTask] = React.useState("");
   const [timeoutId, setTimeoutId] = React.useState("")
+  const [isShow,setIsShow] = React.useState(false)
+  const [msg, setMsg] = React.useState("...")
+  const [isError,setIsError] = React.useState(false)
+  const textColor = isError ? "text-danger " : "text-success ";
 
   const handleChange = (e) => {
     e.preventDefault()
