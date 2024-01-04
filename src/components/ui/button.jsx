@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Button = ({name,variant,color,type="button",className = "", onClick=null}) =>{
+export const Button = ({name,variant,color,type="button",className = "", onClick=()=>{}}) =>{
 const colors = {
     blue: "primary",
     red: "danger",

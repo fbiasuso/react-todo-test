@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const ListItem = ({item,handleCheckbox}) => {
+
+    const labelStyle =  `form-check-label stretched-link ${item.checked && "text-primary"}`
 
     return (
             <li className="list-group-item text-light bg-dark border border-light border-top-0 border-end-0 border-start-0">
@@ -13,7 +15,7 @@ export const ListItem = ({item,handleCheckbox}) => {
                     checked={item.checked} 
                 />
                 <label 
-                    className={"form-check-label stretched-link"+ (item.checked && " text-primary")} 
+                    className={labelStyle} 
                     htmlFor={item.id}
                 >
                     {item.task}
